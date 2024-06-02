@@ -14,6 +14,7 @@ import useFollowUser from "../../hooks/useFollowUser";
 
 const ProfileHeader = () => {
     const { userProfile } = useUserProfileStore();
+    console.log("profile header userProfile: ", userProfile)
     const authUser = useAuthStore((state) => state.user);
     const { isOpen, onOpen, onClose } = useDisclosure();
     const { isFollowing, isUpdating, handleFollowUser } = useFollowUser(

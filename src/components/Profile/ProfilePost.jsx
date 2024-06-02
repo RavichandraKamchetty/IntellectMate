@@ -35,7 +35,6 @@ const ProfilePost = ({ post }) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const userProfile = useUserProfileStore((state) => state.userProfile);
     const authUser = useAuthStore((state) => state.user);
-    console.log("Profile Post: ", post);
 
     const [isDeleting, setIsDeleting] = useState(false);
     const deletePost = usePostStore((state) => state.deletePost);
@@ -46,11 +45,16 @@ const ProfilePost = ({ post }) => {
         if (!window.confirm("Are you sure you want to delete the post?"))
             return;
 
+        setIsDeleting(true);
         try {
             const imageRef = ref(storage, `posts/${post.id}`);
             await deleteObject(imageRef);
+
+            const postDocRef = doc(firestore, "posts", post.id);
+            console.log(postDocRef)
+            await deleteDoc(postDocRef);
+
             const userRef = doc(firestore, "users", authUser.uid);
-            await deleteDoc(doc(firestore, "posts", post.id));
 
             await updateDoc(userRef, {
                 posts: arrayRemove(post.id),

@@ -30,6 +30,7 @@ const usePreviewImg = () => {
             setSelectedFile(null);
             return;
         }
+        console.log("Selected File: ", selectedFile)
     };
 
     return { selectedFile, handleImageChange, setSelectedFile };

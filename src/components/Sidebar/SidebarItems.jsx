@@ -1,4 +1,5 @@
 import CreatePost from "./CreatePost";
+import DarkLightColor from "./DarkLightColor";
 import Home from "./Home";
 import Notifications from "./Notifications";
 import Profile from "./Profile";
@@ -12,6 +13,7 @@ const SidebarItems = () => {
             <Notifications />
             <CreatePost />
             <Profile />
+            {/* <DarkLightColor /> */}
         </>
     );
 };
